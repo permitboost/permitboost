@@ -569,8 +569,7 @@ footer a:hover{color:var(--ink)}
 
     <div class="form-card">
       <!-- Quote requests are delivered by Formspree to permitboost@gmail.com -->
-      <form action="https://formspree.io/f/mqpkgjlp" method="POST">
-        <input type="hidden" name="_next" value="https://permitboostca.com/thanks.html">
+      <form id="quoteForm" action="https://formspree.io/f/mqpkgjlp" method="POST">
         <input type="hidden" name="_subject" value="New quote request - Permit Boost">
         <div class="field-row">
           <div class="field">
@@ -660,7 +659,8 @@ footer a:hover{color:var(--ink)}
           <textarea id="details" name="details" placeholder="For example: 4-ton condenser and coil replaced, existing ducts, permit already pulled. Need the test before Friday's inspection."></textarea>
         </div>
 
-        <button class="btn btn-quote" type="submit" style="width:100%">Send request</button>
+        <button class="btn btn-quote" type="submit" style="width:100%" id="quoteSubmit">Send request</button>
+        <p id="quoteError" style="display:none;color:#B3261E;font-size:.9rem;margin:12px 0 0"></p>
         <p class="form-note">Prefer to talk it through? Call <a href="tel:+13109681237">310-968-1237</a>.</p>
       </form>
     </div>
@@ -705,6 +705,43 @@ footer a:hover{color:var(--ink)}
   <a class="btn btn-quote" href="#quote">Get a quote</a>
 </div>
 
+<script>
+(function(){
+  var form  = document.getElementById('quoteForm');
+  var btn   = document.getElementById('quoteSubmit');
+  var errEl = document.getElementById('quoteError');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errEl.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res){
+      if(res.ok){
+        window.location.href = '/thanks.html';
+      } else {
+        return res.json().then(function(data){
+          throw new Error((data.errors && data.errors.map(function(x){return x.message;}).join(', ')) || 'Something went wrong.');
+        });
+      }
+    })
+    .catch(function(err){
+      btn.disabled = false;
+      btn.textContent = 'Send request';
+      errEl.textContent = 'We could not send that. Please call 310-968-1237 instead.';
+      errEl.style.display = 'block';
+      console.error(err);
+    });
+  });
+})();
+</script>
 <script>
 (function(){
   var phone = document.getElementById('phone');
