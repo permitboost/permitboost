@@ -586,11 +586,17 @@ footer a:hover{color:var(--ink)}
         <div class="field-row">
           <div class="field">
             <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required
+                   inputmode="numeric" maxlength="12" placeholder="310-968-1237"
+                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                   title="Use the format 310-968-1237">
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
+            <input id="email" name="email" type="email" autocomplete="email" required
+                   placeholder="you@example.com"
+                   pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}"
+                   title="Enter a valid email address, e.g. you@example.com">
           </div>
         </div>
 
@@ -621,6 +627,7 @@ footer a:hover{color:var(--ink)}
               <option value="">Select one</option>
               <option>HVAC change-out</option>
               <option>New system cut-in</option>
+              <option>ADU Addition</option>
               <option>Duct replacement or repair</option>
               <option>Condenser or coil replacement</option>
               <option>Furnace or air handler</option>
@@ -698,6 +705,18 @@ footer a:hover{color:var(--ink)}
   <a class="btn btn-quote" href="#quote">Get a quote</a>
 </div>
 
+<script>
+(function(){
+  var phone = document.getElementById('phone');
+  if(!phone) return;
+  phone.addEventListener('input', function(){
+    var d = phone.value.replace(/\D/g,'').slice(0,10);
+    if(d.length > 6)      phone.value = d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6);
+    else if(d.length > 3) phone.value = d.slice(0,3)+'-'+d.slice(3);
+    else                  phone.value = d;
+  });
+})();
+</script>
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
