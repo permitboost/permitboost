@@ -11,6 +11,14 @@
      Quote form posts to Formspree (mqpkgjlp) -> permitboost@gmail.com
      ========================================================== -->
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18201677678"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18201677678');
+</script>
 <link rel="canonical" href="https://permitboostca.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://permitboostca.com/">
@@ -562,6 +570,8 @@ footer a:hover{color:var(--ink)}
     <div class="form-card">
       <!-- Quote requests are delivered by Formspree to permitboost@gmail.com -->
       <form action="https://formspree.io/f/mqpkgjlp" method="POST">
+        <input type="hidden" name="_next" value="https://permitboostca.com/thanks.html">
+        <input type="hidden" name="_subject" value="New quote request - Permit Boost">
         <div class="field-row">
           <div class="field">
             <label for="name">Name</label>
