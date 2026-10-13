@@ -249,6 +249,36 @@ footer a:hover{color:var(--ink)}
   .callbar .btn{flex:1}
   body{padding-bottom:74px}
 }
+
+/* Paired header contact buttons */
+.hdr .wrap{gap:18px}
+.hdr .nav{gap:14px}
+.hdr .nav a{font-size:.85rem}
+.header-actions{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0}
+.hdr .header-actions .btn{margin-left:0;white-space:nowrap;font-family:Inter,system-ui,-apple-system,sans-serif}
+@media(max-width:1100px){.hdr .nav{display:none}}
+@media(max-width:640px){
+ .hdr .wrap{height:auto;min-height:124px;flex-wrap:wrap;gap:8px;padding:10px 16px}
+ .hdr .brand img{height:44px!important;width:auto;max-width:110px;object-fit:contain}
+ .header-actions{width:100%;margin-left:0;gap:8px}
+ .hdr .header-actions .btn{flex:1;min-height:44px;padding:10px 8px;font-size:.8rem}
+ section[id],#quote,#services,#process,#why-us{scroll-margin-top:150px}
+}
+
+
+/* Clear routes for homeowners and contractors */
+.hdr .wrap{max-width:1240px}
+.hdr .nav a{white-space:nowrap}
+.hdr .nav .audience-link{color:var(--violet-deep);font-weight:600;white-space:nowrap}
+.homeowner-route{margin-top:20px;color:var(--muted);font-size:.98rem}
+.homeowner-route a{color:var(--violet-deep);font-weight:600;text-underline-offset:3px}
+@media(max-width:1200px){
+ .hdr .nav{display:flex;margin-left:auto}
+ .hdr .nav a:not(.audience-link){display:none}
+ .hdr .nav .audience-link{display:inline-flex;align-items:center;min-height:44px;padding:0 8px}
+}
+@media(max-width:640px){.hdr .nav{margin-left:auto}.hdr .nav .audience-link{font-size:.9rem}}
+
 </style>
 </head>
 <body>
@@ -258,15 +288,19 @@ footer a:hover{color:var(--ink)}
     <a class="brand" href="#top">
       <img src="permit-boost-logo-1024.png" alt="Permit Boost" style="height: 60px; width: auto; display: block;">
     </a>
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="#services">Services</a>
       <a href="#contractors">Contractors</a>
+      <a class="audience-link" href="/adu-title-24.html">Homeowners</a>
       <a href="#overflow">Overflow</a>
       <a href="#process">How it works</a>
       <a href="#areas">Service area</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-quote btn-sm" href="#quote">Request an inspection</a>
+    <div class="header-actions">
+      <a class="btn btn-quote btn-sm" href="#quote">Request an inspection</a>
+      <a class="btn btn-primary btn-sm" href="tel:+18188352552">Call 818-835-2552</a>
+    </div>
   </div>
 </header>
 
@@ -288,6 +322,7 @@ footer a:hover{color:var(--ink)}
         <a class="btn btn-primary" href="tel:+18188352552">Call 818-835-2552</a>
         <a class="btn btn-quote" href="#quote">Request an inspection</a>
       </div>
+      <p class="homeowner-route">Homeowner? <a href="/adu-title-24.html">Explore ADU testing and documentation &rarr;</a></p>
       <p class="hero-area">Serving Los Angeles and Ventura counties, including Glendale and Burbank.</p>
       <p class="hero-area"><strong>Pejman Zeraat · Rater ID RCN14899</strong><br>ECC / HERS field verification and CHEERS documentation.</p>
     </div>
@@ -728,3 +763,4 @@ footer a:hover{color:var(--ink)}
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>
+
