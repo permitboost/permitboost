@@ -15,14 +15,10 @@
   gtag('config', 'AW-18201677678');
 </script>
 
-<!-- Google Ads conversion: fires when someone lands here after
-     submitting the quote form. Reports a $175 lead. -->
+<!-- Record one $175 conversion only for a confirmed Formspree submission. -->
+<script src="quote-conversions.js"></script>
 <script>
-  gtag('event', 'conversion', {
-    'send_to': 'AW-18201677678/lDv9CPaPzPIcEO6enudD',
-    'value': 175.0,
-    'currency': 'USD'
-  });
+  if(window.PermitBoostConversions) window.PermitBoostConversions.consumePending();
 </script>
 
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path stroke="%23191434" d="M15 47 L50 16 L85 47"/><path stroke="%23191434" d="M27 45 V82 H73 V45"/><path stroke="%2322D455" d="M36 57 L48 69 L80 27"/><path stroke="%2322D455" d="M64 27 H80 V43"/></g></svg>'>
@@ -147,11 +143,11 @@ footer a:hover{color:var(--ink)}
     </div>
 
     <div class="urgent">
-      <p><strong>Inspection scheduled soon?</strong> Call us instead of waiting on email — we can often get out the same or next day.</p>
+      <p><strong>Inspection scheduled soon?</strong> Call us to discuss your project and the next available appointment.</p>
     </div>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="tel:+13109681237">Call 310-968-1237</a>
+      <a class="btn btn-primary" href="tel:+18188352552">Call 818-835-2552</a>
       <a class="btn btn-ghost" href="/">Back to the site</a>
     </div>
   </div>
@@ -159,9 +155,9 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    Permit Boost · <a href="tel:+13109681237">310-968-1237</a> ·
+    Permit Boost · <a href="tel:+18188352552">818-835-2552</a> ·
     <a href="mailto:permitboost@gmail.com">permitboost@gmail.com</a><br>
-    Los Angeles · Ventura · Orange County · Glendale · Burbank
+    Los Angeles · Ventura · Glendale · Burbank
   </div>
 </footer>
 
