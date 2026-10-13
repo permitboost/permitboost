@@ -288,7 +288,8 @@ footer a:hover{color:var(--ink)}
         <a class="btn btn-primary" href="tel:+18188352552">Call 818-835-2552</a>
         <a class="btn btn-quote" href="#quote">Request an inspection</a>
       </div>
-      <p class="hero-area">Serving Los Angeles County, Ventura County, Glendale and Burbank.</p>
+      <p class="hero-area">Serving Los Angeles and Ventura counties, including Glendale and Burbank.</p>
+      <p class="hero-area"><strong>Pejman Zeraat · Rater ID RCN14899</strong><br>ECC / HERS field verification and CHEERS documentation.</p>
     </div>
 
     <div class="cert" aria-label="Example of a completed ECC or HERS verification">
@@ -475,13 +476,11 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <div class="head-block">
       <h2>Where we work</h2>
-      <p>We cover two counties across Southern California, including the cities where permits move fastest when someone knows the local process.</p>
+      <p>We serve Los Angeles and Ventura counties. Our Los Angeles County coverage includes Glendale and Burbank.</p>
     </div>
     <div class="areas">
       <div class="area"><i></i>Los Angeles County</div>
       <div class="area"><i></i>Ventura County</div>
-      <div class="area"><i></i>Glendale</div>
-      <div class="area"><i></i>Burbank</div>
     </div>
     <p style="color:var(--muted);margin-top:26px">Not sure if your address is covered? Call <a href="tel:+18188352552">818-835-2552</a> and we'll tell you straight away.</p>
   </div>
@@ -551,6 +550,7 @@ footer a:hover{color:var(--ink)}
       <p style="color:var(--muted)">Send the project details and we'll reply with availability, next steps, and project pricing. Repeat contractors can use this same form for new jobs.</p>
       <p style="color:var(--muted)">Need an inspection today? Call <a href="tel:+18188352552">818-835-2552</a> to ask about same-day availability and the additional rush fee.</p>
 
+      <p style="color:var(--muted)"><strong>Call hours (Pacific)</strong><br>Monday–Friday: 8 a.m.–8 p.m.<br>Saturday: 10 a.m.–4 p.m. · Sunday: closed.</p>
       <div class="direct">
         <a href="tel:+18188352552">
           <span class="ic">📞</span>
@@ -572,8 +572,8 @@ footer a:hover{color:var(--ink)}
             <input id="name" name="name" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" autocomplete="organization" required>
+            <label for="company">Company (optional)</label>
+            <input id="company" name="company" type="text" autocomplete="organization">
           </div>
         </div>
 
@@ -599,40 +599,6 @@ footer a:hover{color:var(--ink)}
           <input id="address" name="address" type="text" required>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="building">Company type</label>
-            <select id="building" name="company_type" required>
-              <option value="">Select one</option>
-              <option>HVAC contractor</option>
-              <option>General contractor</option>
-              <option>ECC / HERS company</option>
-              <option>Title 24 / energy consultant</option>
-              <option>Permit expeditor</option>
-              <option>ADU / design-build company</option>
-              <option>Property owner</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="project">Type of project</label>
-            <select id="project" name="project_type" required>
-              <option value="">Select one</option>
-              <option>HVAC change-out</option>
-              <option>New system cut-in</option>
-              <option>ADU Addition</option>
-              <option>Duct replacement or repair</option>
-              <option>Condenser or coil replacement</option>
-              <option>Furnace or air handler</option>
-              <option>Mini-split installation</option>
-              <option>Addition or remodel</option>
-              <option>Electrical work</option>
-              <option>Plumbing / water heater</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-
         <div class="field">
           <label for="service">Service needed</label>
           <select id="service" name="service" required>
@@ -648,24 +614,14 @@ footer a:hover{color:var(--ink)}
           </select>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="permit">Permit number (if available)</label>
-            <input id="permit" name="permit_number" type="text">
-          </div>
-          <div class="field">
-            <label for="cheers">CHEERS project ID (if available)</label>
-            <input id="cheers" name="cheers_project_id" type="text">
-          </div>
-        </div>
-
         <div class="field">
-          <label for="details">Describe the job</label>
-          <textarea id="details" name="details" placeholder="For example: ADU mini-split installation, permit already pulled, CHEERS project created, requesting field verification next week."></textarea>
+          <label for="details">Describe the job (optional)</label>
+          <textarea id="details" name="details" placeholder="For example: ADU mini-split inspection in Burbank, needed next week."></textarea>
         </div>
 
         <button class="btn btn-quote" type="submit" style="width:100%" id="quoteSubmit">Send project</button>
         <p id="quoteError" style="display:none;color:#B3261E;font-size:.9rem;margin:12px 0 0"></p>
+        <p class="form-note">No permit number or CHEERS ID needed to request pricing. We can collect those later.</p>
         <p class="form-note">Prefer to talk it through? Call <a href="tel:+18188352552">818-835-2552</a>.</p>
       </form>
     </div>
