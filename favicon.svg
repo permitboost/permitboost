@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 100 100">
+  <title>Permit Boost</title>
+  <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="#191434" d="M15 47 L50 16 L85 47"/>
+    <path stroke="#191434" d="M27 45 V82 H73 V45"/>
+    <path stroke="#22D455" d="M36 57 L48 69 L80 27"/>
+    <path stroke="#22D455" d="M64 27 H80 V43"/>
+  </g>
+</svg>
