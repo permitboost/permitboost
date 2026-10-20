@@ -348,6 +348,29 @@ footer a:hover{color:var(--ink)}
 }
 @media(max-width:640px){.hdr .nav{margin-left:auto}.hdr .nav .audience-link{font-size:.9rem}}
 
+
+/* Service illustration slider */
+.service-gallery{padding:56px 0 0}
+.service-gallery .wrap{max-width:1000px}
+.service-gallery .head-block{margin-bottom:24px}
+.service-carousel{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface);box-shadow:0 20px 45px -30px rgba(70,40,120,.3)}
+.carousel-window{overflow:hidden;touch-action:pan-y}
+.carousel-track{display:flex;transition:transform .55s ease}
+.service-slide{margin:0;flex:0 0 100%;min-width:0}
+.service-slide img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+.service-slide figcaption{padding:18px 24px;background:var(--paper);font-family:'Space Grotesk',Inter,sans-serif;font-size:1.12rem;font-weight:600}
+.carousel-controls[hidden]{display:none}
+.carousel-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-top:1px solid var(--line)}
+.carousel-buttons,.carousel-dots{display:flex;align-items:center;gap:8px}
+.carousel-controls button{font:inherit;cursor:pointer;color:var(--ink);border:1px solid var(--line);border-radius:9px;background:var(--paper);min-width:44px;min-height:44px}
+.carousel-controls button:hover{border-color:var(--violet)}
+.carousel-controls .carousel-dot{border:0;background:transparent;display:grid;place-items:center;padding:0}
+.carousel-dot::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--lilac)}
+.carousel-dot[aria-pressed='true']::before{background:var(--green-ink);width:24px;border-radius:8px}
+.carousel-controls .carousel-toggle{padding:8px 12px;font-size:.85rem}
+.carousel-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:640px){.service-gallery{padding-top:36px}.carousel-controls{padding:10px;gap:4px}.carousel-buttons{gap:4px}.carousel-dots{gap:0}.carousel-controls .carousel-toggle{padding:6px;font-size:.78rem}.service-slide figcaption{padding:16px;font-size:1rem}}
+@media(prefers-reduced-motion:reduce){.carousel-track{transition:none}}
 </style>
 </head>
 <body>
@@ -425,6 +448,30 @@ footer a:hover{color:var(--ink)}
     <div><span>CHEERS</span><small>Registry documentation</small></div>
   </div>
 </div>
+
+<!-- SERVICE GALLERY -->
+<section class="service-gallery" id="testing-gallery" aria-labelledby="testing-gallery-title">
+ <div class="wrap">
+  <div class="head-block"><h2 id="testing-gallery-title">A closer look at field verification</h2><p>Duct leakage, airflow and refrigerant charge checks for your project's applicable ECC / HERS requirements.</p></div>
+  <div class="service-carousel" role="region" aria-roledescription="carousel" aria-label="Field verification illustrations">
+   <div class="carousel-window"><div class="carousel-track" id="service-slides">
+    <figure class="service-slide" role="group" aria-roledescription="slide" aria-label="1 of 3"><img src="/assets/duct-leakage.webp" alt="Illustration of a technician using a duct leakage tester and pressure gauge" width="1672" height="941" loading="lazy" decoding="async"><figcaption>Duct leakage testing</figcaption></figure>
+    <figure class="service-slide" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true"><img src="/assets/airflow.webp" alt="Illustration of a technician measuring airflow at a ceiling grille with a flow hood" width="1672" height="941" loading="lazy" decoding="async"><figcaption>Airflow measurement</figcaption></figure>
+    <figure class="service-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true"><img src="/assets/refrigerant-charge.webp" alt="Illustration of a technician checking an outdoor condenser with refrigerant gauges" width="1672" height="941" loading="lazy" decoding="async"><figcaption>Refrigerant charge verification</figcaption></figure>
+   </div></div>
+   <div class="carousel-controls" hidden>
+    <div class="carousel-buttons"><button type="button" data-prev aria-label="Previous image" aria-controls="service-slides">&#8592;</button><button type="button" data-next aria-label="Next image" aria-controls="service-slides">&#8594;</button></div>
+    <div class="carousel-dots" role="group" aria-label="Choose an image">
+     <button class="carousel-dot" type="button" data-slide="0" aria-label="Show duct leakage testing" aria-pressed="true" aria-controls="service-slides"></button>
+     <button class="carousel-dot" type="button" data-slide="1" aria-label="Show airflow measurement" aria-pressed="false" aria-controls="service-slides"></button>
+     <button class="carousel-dot" type="button" data-slide="2" aria-label="Show refrigerant charge verification" aria-pressed="false" aria-controls="service-slides"></button>
+    </div>
+    <button class="carousel-toggle" type="button" data-toggle>Pause slideshow</button>
+   </div>
+   <span class="carousel-status" aria-live="polite" aria-atomic="true"></span>
+  </div>
+ </div>
+</section>
 
 <!-- SERVICES -->
 <section id="services">
@@ -838,6 +885,54 @@ footer a:hover{color:var(--ink)}
 })();
 </script>
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+<script>
+(function(){
+ const root=document.querySelector('.service-carousel');
+ if(!root)return;
+ const track=root.querySelector('.carousel-track');
+ const slides=Array.from(root.querySelectorAll('.service-slide'));
+ const dots=Array.from(root.querySelectorAll('[data-slide]'));
+ const toggle=root.querySelector('[data-toggle]');
+ const status=root.querySelector('.carousel-status');
+ const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let index=0, timer=null, paused=motion.matches, hovered=false, focused=false, visible=false;
+ root.querySelector('.carousel-controls').hidden=false;
+ function stop(){clearInterval(timer);timer=null;}
+ function sync(){
+  stop();toggle.textContent=paused?'Play slideshow':'Pause slideshow';
+  if(!paused&&!hovered&&!focused&&visible&&!document.hidden)timer=setInterval(()=>show(index+1,false),6000);
+ }
+ function show(next,announce){
+  index=(next+slides.length)%slides.length;
+  track.style.transform='translateX(-'+(index*100)+'%)';
+  slides.forEach((slide,i)=>slide.setAttribute('aria-hidden',String(i!==index)));
+  dots.forEach((dot,i)=>dot.setAttribute('aria-pressed',String(i===index)));
+  if(announce)status.textContent=(index+1)+' of '+slides.length+': '+slides[index].querySelector('figcaption').textContent;
+ }
+ function manual(next){paused=true;show(next,true);sync();}
+ root.querySelector('[data-prev]').addEventListener('click',()=>manual(index-1));
+ root.querySelector('[data-next]').addEventListener('click',()=>manual(index+1));
+ dots.forEach((dot,i)=>dot.addEventListener('click',()=>manual(i)));
+ toggle.addEventListener('click',()=>{paused=!paused;sync();});
+ root.addEventListener('mouseenter',()=>{hovered=true;sync();});
+ root.addEventListener('mouseleave',()=>{hovered=false;sync();});
+ root.addEventListener('focusin',()=>{focused=true;sync();});
+ root.addEventListener('focusout',()=>{setTimeout(()=>{focused=root.contains(document.activeElement);sync();},0);});
+ root.addEventListener('keydown',event=>{
+  if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();manual(index+(event.key==='ArrowRight'?1:-1));}
+ });
+ let start=null;
+ const viewport=root.querySelector('.carousel-window');
+ viewport.addEventListener('touchstart',event=>{const t=event.touches[0];start={x:t.clientX,y:t.clientY};stop();},{passive:true});
+ viewport.addEventListener('touchend',event=>{if(!start)return;const t=event.changedTouches[0];const dx=t.clientX-start.x,dy=t.clientY-start.y;start=null;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))manual(index+(dx<0?1:-1));else sync();},{passive:true});
+ viewport.addEventListener('touchcancel',()=>{start=null;sync();},{passive:true});
+ document.addEventListener('visibilitychange',sync);
+ motion.addEventListener('change',()=>{if(motion.matches)paused=true;sync();});
+ if('IntersectionObserver' in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.25}).observe(root);}else{visible=true;}
+ sync();
+})();
+</script>
 </body>
 </html>
 
