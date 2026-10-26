@@ -308,6 +308,18 @@ section[id]{scroll-margin-top:120px}
 }
 @media(max-width:640px){.hdr .nav{margin-left:auto}.hdr .nav .audience-link{font-size:.9rem}}
 
+
+/* Clear, clickable audience navigation */
+.hdr .nav .audience-link{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:44px;padding:10px 14px;border:1px solid var(--lilac-deep);
+ border-radius:10px;background:var(--lilac-wash);color:var(--violet-deep);
+ font-weight:600;text-decoration:none;line-height:1.3;
+}
+.hdr .nav .audience-link:hover{background:var(--surface-2);border-color:var(--violet-deep)}
+.hdr .nav .audience-link:focus-visible{outline:3px solid var(--violet-deep);outline-offset:3px}
+@media(max-width:640px){.hdr .nav .audience-link{font-size:.82rem;padding:10px;white-space:normal;text-align:center}}
+
 </style>
 </head>
 <body>
@@ -316,7 +328,7 @@ section[id]{scroll-margin-top:120px}
     <a class="brand" href="/">
       <img src="permit-boost-logo-1024.png" alt="Permit Boost" style="height: 60px; width: auto; display: block;">
     </a>
-    <nav class="nav" aria-label="Main navigation"><a href="#process">How it works</a><a href="#services">What we handle</a><a href="#faq">FAQs</a><a class="audience-link" href="/">Contractors</a></nav>
+    <nav class="nav" aria-label="Main navigation"><a href="#process">How it works</a><a href="#services">What we handle</a><a href="#faq">FAQs</a><a class="audience-link" href="/">Contractor? Start here <span aria-hidden="true">&rarr;</span></a></nav>
     <div class="header-actions">
       <a class="btn btn-quote btn-sm" href="#quote">Get a Free Quote</a>
       <a class="btn btn-primary btn-sm" href="tel:+18188352552">Call 818-835-2552</a>
