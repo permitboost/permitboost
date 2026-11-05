@@ -160,7 +160,7 @@ for(const kind of ['HTTP rejection', 'network failure', 'non-JSON error response
     await waitFor(() => !h.elements.quoteSubmit.disabled);
     assert.equal(h.elements.quoteSubmit.textContent, 'Send project');
     assert.equal(h.elements.quoteError.style.display, 'block');
-    assert.match(h.elements.quoteError.textContent, /818-835-2552/);
+    assert.match(h.elements.quoteError.textContent, /310-968-1237/);
     assert.equal(h.window.location.href, undefined);
     assert.equal(h.store.size, 0);
     h.api.consumePending();
